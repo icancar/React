@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function Player({initialName, symbol, isActive}) {
+export default function Player({initialName, symbol, isActive, onChangeName}) {
     const [isEditing, setIsEditing] = useState(false);
     const [buttonText, setButtonText] = useState("Edit")
     const [playerName, setPlayerName] = useState(initialName)
@@ -9,7 +9,8 @@ export default function Player({initialName, symbol, isActive}) {
             setButtonText("Save")
         }else {
             setButtonText("Edit")
-        } 
+            onChangeName(symbol, playerName);
+        }
     }
 
     function handleNameChange(event) {
