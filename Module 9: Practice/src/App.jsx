@@ -46,6 +46,8 @@ function App() {
   );
   let content = (
     <SelectedProject
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
       onProjectDelete={handleDeleteProject}
       project={selectedProject}
     />
@@ -64,6 +66,24 @@ function App() {
       };
     });
   }
+
+  function handleAddTask(text) {
+    setProjectsState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.task],
+      };
+    });
+  }
+
+  function handleDeleteTask() {}
 
   function handleDeleteProject() {
     setProjectsState((prevState) => {
